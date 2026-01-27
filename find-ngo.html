@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find NGOs | FeedLink</title>
+    <link rel="stylesheet" href="style/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="navbar-container">
+        <div class="logo">
+            <i class="fas fa-leaf"></i> FeedLink
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="donate.html" class="nav-link">Donate Food</a>
+            <a href="login.html" class="nav-link login-btn">Login</a>
+            <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<section class="ngo-list">
+    <div class="section-container">
+        <h2>Registered NGOs</h2>
+        <p class="section-subtitle">Find and connect with verified NGOs in your area</p>
+        
+        <!-- Search & Filter -->
+        <div class="ngo-filters">
+            <input type="text" id="ngoSearchInput" placeholder="Search by name, city, or category...">
+            <select id="ngoFilterCategory">
+                <option value="">All Categories</option>
+                <option value="hunger">Fight Hunger</option>
+                <option value="nutrition">Nutrition Programs</option>
+                <option value="community">Community Support</option>
+                <option value="elderly">Elderly Care</option>
+                <option value="children">Children Care</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <!-- Loading State -->
+        <div id="ngoLoadingState" style="text-align: center; padding: 40px;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: var(--primary-color);"></i>
+            <p style="margin-top: 15px; color: var(--text-light);">Loading registered NGOs...</p>
+        </div>
+
+        <!-- NGO Grid -->
+        <div id="ngoGrid" class="ngo-grid" style="display: none;">
+            <!-- NGO cards will be loaded here dynamically -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="ngoEmptyState" style="text-align: center; padding: 40px; display: none;">
+            <i class="fas fa-inbox" style="font-size: 3rem; color: var(--text-light); opacity: 0.5;"></i>
+            <p style="margin-top: 15px; color: var(--text-light);">No NGOs found. Please try different filters.</p>
+        </div>
+    </div>
+</section>
+
+<script src="script/api.js"></script>
+<script src="script/find-ngo-handler.js"></script>
+<script src="script/all.js"></script>
+</body>
+</html>

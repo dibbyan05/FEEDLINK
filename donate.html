@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Food | FeedLink</title>
+    <link rel="stylesheet" href="style/all.css">
+    <link rel="stylesheet" href="style/donate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="navbar">
+    <div class="navbar-container">
+        <div class="logo">
+            <i class="fas fa-leaf"></i> FeedLink
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="find-ngo.html" class="nav-link">Find NGOs</a>
+            <a href="login.html" class="nav-link login-btn">Login</a>
+            <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<div class="donate-container">
+    <h2><i class="fas fa-hand-holding-heart"></i> Donate Surplus Food</h2>
+    <p style="color: var(--text-light); margin-bottom: 20px;">Share your surplus food and make a real difference in someone's life</p>
+
+    <form id="donateForm">
+
+        <!-- Basic Food Information -->
+        <div class="form-section">
+            <h3><i class="fas fa-info-circle"></i> Food Information</h3>
+            
+            <div class="form-row full">
+                <div class="form-group">
+                    <label for="foodName">Food Name/Type *</label>
+                    <input type="text" id="foodName" placeholder="e.g., Rice, Biryani, Mixed Vegetables" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="quantity">Quantity *</label>
+                    <input type="number" id="quantity" placeholder="Number of servings" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="unit">Unit *</label>
+                    <select id="unit" required>
+                        <option value="">-- Select Unit --</option>
+                        <option value="servings">Servings</option>
+                        <option value="kg">Kilograms (kg)</option>
+                        <option value="packets">Packets</option>
+                        <option value="plates">Plates</option>
+                        <option value="containers">Containers</option>
+                        <option value="liters">Liters</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i> Be specific about the quantity to help NGOs plan distribution better
+            </div>
+        </div>
+
+        <!-- Food Characteristics -->
+        <div class="form-section">
+            <h3><i class="fas fa-leaf"></i> Food Details</h3>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label>Is this food vegetarian? *</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="radio" id="veg-yes" name="vegetarian" value="yes" required>
+                        <label for="veg-yes" style="margin: 0;">🥬 Yes, Vegetarian</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" id="veg-no" name="vegetarian" value="no" required>
+                        <label for="veg-no" style="margin: 0;">🍗 No, Non-Vegetarian</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label>Food Category/Type *</label>
+                <div class="tag-group">
+                    <div>
+                        <input type="checkbox" id="tag-cooked" class="tag-checkbox" name="category">
+                        <label for="tag-cooked" class="tag-label">🍳 Cooked</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="tag-raw" class="tag-checkbox" name="category">
+                        <label for="tag-raw" class="tag-label">🥕 Raw/Fresh</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="tag-packaged" class="tag-checkbox" name="category">
+                        <label for="tag-packaged" class="tag-label">📦 Packaged</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="tag-baked" class="tag-checkbox" name="category">
+                        <label for="tag-baked" class="tag-label">🥐 Baked</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="tag-dairy" class="tag-checkbox" name="category">
+                        <label for="tag-dairy" class="tag-label">🥛 Dairy</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="tag-beverages" class="tag-checkbox" name="category">
+                        <label for="tag-beverages" class="tag-label">☕ Beverages</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expiry & Safety Information -->
+        <div class="form-section">
+            <h3><i class="fas fa-clock"></i> Expiry Information</h3>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="expiryDate">Best Before Date *</label>
+                    <input type="date" id="expiryDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiryTime">Best Before Time *</label>
+                    <input type="time" id="expiryTime" required>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="fas fa-exclamation-circle"></i> Please provide accurate expiry details. NGOs will prioritize based on urgency.
+            </div>
+        </div>
+
+        <!-- Location Information -->
+        <div class="form-section">
+            <h3><i class="fas fa-map-marker-alt"></i> Pickup Location</h3>
+
+            <div class="location-btn-wrapper">
+                <button type="button" id="getCurrentLocationBtn" class="location-btn">
+                    <i class="fas fa-location-dot"></i> Use My Current Location
+                </button>
+                <div id="locationStatus" class="location-status"></div>
+            </div>
+
+            <div class="form-row full">
+                <div class="form-group">
+                    <label for="address">Pickup Address *</label>
+                    <input type="text" id="address" placeholder="Building name, street address" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">City *</label>
+                    <input type="text" id="city" placeholder="Your city" required>
+                </div>
+                <div class="form-group">
+                    <label for="pincode">Pin Code *</label>
+                    <input type="text" id="pincode" placeholder="Postal code" required>
+                </div>
+            </div>
+
+            <div class="form-row full">
+                <div class="form-group">
+                    <label for="landmark">Landmark (Optional)</label>
+                    <input type="text" id="landmark" placeholder="e.g., near XYZ School">
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="form-section">
+            <h3><i class="fas fa-file-alt"></i> Additional Details</h3>
+
+            <div class="form-row full">
+                <div class="form-group">
+                    <label for="description">Food Description (Optional)</label>
+                    <textarea id="description" placeholder="Any special instructions or details about the food? e.g., Allergies, ingredients, storage conditions"></textarea>
+                </div>
+            </div>
+
+            <div class="form-row full">
+                <div class="form-group file-upload">
+                    <label for="foodImage">Food Photo *</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="foodImage" accept="image/*" required>
+                        <label for="foodImage" class="file-input-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Click to upload or drag and drop</span>
+                        </label>
+                    </div>
+                    <p class="file-name" id="fileName"></p>
+                </div>
+            </div>
+
+            <div class="form-row full">
+                <div class="form-group">
+                    <label for="contactPhone">Contact Number *</label>
+                    <input type="tel" id="contactPhone" placeholder="Your phone number" required>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+            <i class="fas fa-check-circle"></i> Post Your Donation
+        </button>
+    </form>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="section-container">
+        <div class="footer-bottom">
+            <p>&copy; 2026 FeedLink | All Rights Reserved | Recovering Food, Feeding Hope</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script/api-config.js"></script>
+<script src="script/api-utils.js"></script>
+<script src="script/auth-manager.js"></script>
+<script src="script/api.js"></script>
+<script src="script/donate.js"></script>
+<script src="script/all.js"></script>
+
+</body>
+</html>
