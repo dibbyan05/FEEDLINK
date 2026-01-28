@@ -242,7 +242,6 @@ body {
     border-radius: 50px;
     cursor: pointer;
     font-weight: 600;
-    display: flex;
     align-items: center;
     gap: 10px;
     transition: var(--transition);
@@ -1173,4 +1172,5 @@ body.dark-mode .ngo-filters select {
             font-size: 0.85rem;
             color: var(--text-light);
             margin-top: 5px;
+
         }
